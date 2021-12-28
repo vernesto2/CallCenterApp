@@ -1,0 +1,41 @@
+﻿@model CallCenterApp.Models.Actividad
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Actividad</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InicioLlamada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InicioLlamada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FinLlamada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FinLlamada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Resuelto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Resuelto)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Regresar a la Lista</a>
+</div>

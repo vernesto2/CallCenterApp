@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CallCenterApp.Models.Actividad>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Actividades</h1>
+
+<p>
+    <a asp-action="Create">Crear Nueva</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Inicio de Llamada
+            </th>
+            <th>
+                Fin de Llamada
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resuelto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InicioLlamada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinLlamada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resuelto)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.IdActividad">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

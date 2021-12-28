@@ -1,0 +1,111 @@
+﻿@using System
+@using CallCenterApp.Models.DTOs
+@model CallCenterApp.Models.DTOs.DTOConsultas
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dashboard Supervisor</h1>
+
+<h3>Llamadas atendidas por semana</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                N° Semana
+            </th>
+            <th>
+                Total de Llamadas
+            </th>
+            <th>
+                Llamadas Resueltas
+            </th>
+            <th>
+                Llamadas No Resueltas
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.listaConsultaGeneral) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.semana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalLlamadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.resueltas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noResueltas)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h3>Agentes con mas llamadas</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Agente
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                N° Llamadas
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.listaAgentesMayor) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Llamadas)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h3>Agentes con menos llamadas</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Agente
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                N° Llamadas
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.listaAgentesMenor) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Llamadas)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

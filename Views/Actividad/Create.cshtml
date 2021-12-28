@@ -1,0 +1,99 @@
+﻿@model CallCenterApp.Models.Actividad
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear Actividad</h1>
+
+<hr />
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <input id="fechaInicio" hidden type="text" asp-for="InicioLlamada" class="form-control" />
+        <input id="fechaFin" hidden type="text" asp-for="FinLlamada" class="form-control" />
+        
+        <div class="col-md-5">
+            <div class="form-group">
+                <button data-toggle="tooltip" data-placement="top" title="Inciar Llamada" type="button" id="btnIniciarLlamada" class="btn btn-outline-info">Iniciar</button>
+                <span id="spanHoraInicio"></span>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="form-group">
+                <button data-toggle="tooltip" data-placement="top" title="Terminar Llamada" type="button" disabled id="btnFinLlamada" class="btn btn-outline-secondary">Terminar</button>
+                <span id="spanHoraFin"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="IdTipoActividad" class="control-label">Tipo de Actividad</label>
+                <select asp-for="IdTipoActividad" class ="form-control" asp-items="ViewBag.IdTipoActividad"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Motivo" class="control-label"></label>
+                <input asp-for="Motivo" class="form-control" />
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Resuelto" /> @Html.DisplayNameFor(model => model.Resuelto)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Regresar a la Lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        var fechaActualInicio = null;
+        var fechaActualFin = null;
+        var spanHoraInicio = null;
+        var fechaInicio = null;
+
+        // boton de Iniciar
+        var btnIniciarLlamada = document.querySelector('#btnIniciarLlamada');
+        var btnFinLlamada = document.querySelector('#btnFinLlamada');
+        btnIniciarLlamada.addEventListener('click', function(event) {
+            btnIniciarLlamada.disabled = true;
+            btnFinLlamada.disabled = false;
+            fechaActualInicio = new Date();
+            
+            spanHoraInicio = document.querySelector('#spanHoraInicio');
+            spanHoraInicio.innerHTML = fechaActualInicio.toLocaleString();
+            
+            fechaInicio = document.querySelector('#fechaInicio');
+            fechaInicio.value = fechaActualInicio.toISOString();
+            
+        });
+
+
+        // boton de Terminar
+        btnFinLlamada.addEventListener('click', function(event) {
+            btnFinLlamada.disabled = true;
+            fechaActualFin = new Date();
+            
+            spanHoraFin = document.querySelector('#spanHoraFin');
+            spanHoraFin.innerHTML = fechaActualFin.toLocaleString();
+            
+            fechaFin = document.querySelector('#fechaFin');
+            fechaFin.value = fechaActualFin.toISOString();
+            
+        });
+    </script>
+}
